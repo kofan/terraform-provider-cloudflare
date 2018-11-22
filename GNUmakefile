@@ -7,7 +7,10 @@ VERSION=$(shell git describe --tags --always)
 default: build
 
 build: fmtcheck
-	go install -ldflags="-X github.com/terraform-providers/terraform-provider-cloudflare/version.ProviderVersion=$(VERSION)"
+	go install -ldflags="-X github.com/kofan/terraform-provider-cloudflare/version.ProviderVersion=$(VERSION)"
+
+build-local:
+	go build -ldflags="-X github.com/kofan/terraform-provider-cloudflare/version.ProviderVersion=$(VERSION)" -o terraform-provider-cloudflare_$(VERSION)
 
 test: fmtcheck
 	go test -i $(TEST) || exit 1
@@ -60,4 +63,4 @@ ifeq (,$(wildcard $(GOPATH)/src/$(WEBSITE_REPO)))
 endif
 	@$(MAKE) -C $(GOPATH)/src/$(WEBSITE_REPO) website-provider-test PROVIDER_PATH=$(shell pwd) PROVIDER_NAME=$(PKG_NAME)
 
-.PHONY: build test testacc vet fmt fmtcheck errcheck vendor-status test-compile website website-test
+.PHONY: build build-local test testacc vet fmt fmtcheck errcheck vendor-status test-compile website website-test
