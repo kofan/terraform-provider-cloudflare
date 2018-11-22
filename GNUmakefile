@@ -4,13 +4,19 @@ WEBSITE_REPO=github.com/hashicorp/terraform-website
 PKG_NAME=cloudflare
 VERSION=$(shell git describe --tags --always)
 
+define build_local
+	GOOS=$(1) GOARCH=$(2) go build -ldflags="-X github.com/kofan/terraform-provider-cloudflare/version.ProviderVersion=$(VERSION)" -o bin/$(1)_$(2)/terraform-provider-cloudflare_$(VERSION)
+endef
+
 default: build
 
 build: fmtcheck
 	go install -ldflags="-X github.com/kofan/terraform-provider-cloudflare/version.ProviderVersion=$(VERSION)"
 
 build-local:
-	go build -ldflags="-X github.com/kofan/terraform-provider-cloudflare/version.ProviderVersion=$(VERSION)" -o terraform-provider-cloudflare_$(VERSION)
+	$(call build_local,darwin,amd64)
+	$(call build_local,linux,amd64)
+	$(call build_local,linux,arm)
 
 test: fmtcheck
 	go test -i $(TEST) || exit 1
