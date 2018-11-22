@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/httpclient"
 	"github.com/hashicorp/terraform/terraform"
-	"github.com/terraform-providers/terraform-provider-cloudflare/version"
+	"github.com/kofan/terraform-provider-cloudflare/version"
 )
 
 // Provider returns a terraform.ResourceProvider.
