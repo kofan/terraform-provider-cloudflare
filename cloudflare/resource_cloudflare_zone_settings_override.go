@@ -193,7 +193,7 @@ var resourceCloudflareZoneSettingsSchema = map[string]*schema.Schema{
 		Type:     schema.TypeList,
 		Optional: true,
 		Computed: true,
-		MinItems: 1,
+		MinItems: 0,
 		MaxItems: 1,
 		Elem: &schema.Resource{
 			Schema: map[string]*schema.Schema{
@@ -222,7 +222,7 @@ var resourceCloudflareZoneSettingsSchema = map[string]*schema.Schema{
 		Type:     schema.TypeList, // on/off
 		Optional: true,
 		Computed: true,
-		MinItems: 1,
+		MinItems: 0,
 		MaxItems: 1,
 		Elem: &schema.Resource{
 			Schema: map[string]*schema.Schema{

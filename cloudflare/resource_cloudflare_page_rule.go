@@ -225,7 +225,7 @@ func resourceCloudflarePageRule() *schema.Resource {
 						"forwarding_url": {
 							Type:     schema.TypeList,
 							Optional: true,
-							MinItems: 1,
+							MinItems: 0,
 							MaxItems: 1,
 							Elem: &schema.Resource{
 								SchemaVersion: 1,
